@@ -104,14 +104,14 @@ public class ImageController {
     User loggedUser = (User) httpSession.getAttribute("loggeduser");
 
     if (image.getUser().getId() == loggedUser.getId()) {
-      System.out.println("#########image owner edit#######");
+      //System.out.println("#########image owner edit#######");
       String tags = convertTagsToString(image.getTags());
       model.addAttribute("tags", tags);
       return "images/edit";
     } else {
-      System.out.println("#########non owner edit###########");
+      //System.out.println("#########non owner edit###########");
       model.addAttribute("tags", image.getTags());
-      model.addAttribute("editError", "true");
+      model.addAttribute("editError", "Only the owner of the image can edit the image");
       return "images/image";
     }
   }
@@ -165,7 +165,7 @@ public class ImageController {
       imageService.deleteImage(imageId);
       return "redirect:/images";
     } else {
-      model.addAttribute("deleteError", "true");
+      model.addAttribute("deleteError", "Only the owner of the image can delete the image");
       Image image = imageService.getImage(imageId);
       model.addAttribute("image", image);
       model.addAttribute("tags", image.getTags());
