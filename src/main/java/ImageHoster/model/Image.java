@@ -3,6 +3,7 @@ package ImageHoster.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -53,6 +55,9 @@ public class Image {
   //Below annotation indicates that the name of the column in 'images' table referring the primary key in 'users' table will be 'user_id'
   @JoinColumn(name = "user_id")
   private User user;
+
+  @OneToMany(mappedBy = "image", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+  private List<Comment> comments = new ArrayList<>();
 
   //The attribute contains a list of all the tags of an image
   //Note that no column will be generated for this attribute in the database instead a new table will be created
@@ -133,5 +138,13 @@ public class Image {
 
   public void setTags(List<Tag> tags) {
     this.tags = tags;
+  }
+
+  public List<Comment> getComments() {
+    return comments;
+  }
+
+  public void setComments(List<Comment> comments) {
+    this.comments = comments;
   }
 }
