@@ -54,6 +54,7 @@ public class ImageController {
     Image image = imageService.getImageByIdAndTitle(id, title);
     model.addAttribute("image", image);
     model.addAttribute("tags", image.getTags());
+    model.addAttribute("comments",image.getComments());
     return "images/image";
   }
 
@@ -151,7 +152,6 @@ public class ImageController {
     imageService.updateImage(updatedImage);
     return "redirect:/images/" + updatedImage.getId() + "/" + updatedImage.getTitle();
   }
-
 
   //This controller method is called when the request pattern is of type 'deleteImage' and also the incoming request is of DELETE type
   //The method calls the deleteImage() method in the business logic passing the id of the image to be deleted
