@@ -51,7 +51,7 @@ public class ImageController {
   @RequestMapping("/images/{id}/{title}")
   public String showImage(@PathVariable("id") Integer id,
       @PathVariable("title") String title, Model model) {
-    Image image = imageService.getImageByIdAndTitle(id, title);
+    Image image = imageService.getImage(id);
     model.addAttribute("image", image);
     model.addAttribute("tags", image.getTags());
     model.addAttribute("comments",image.getComments());
@@ -103,7 +103,6 @@ public class ImageController {
     Image image = imageService.getImage(imageId);
     model.addAttribute("image", image);
     User loggedUser = (User) httpSession.getAttribute("loggeduser");
-
     if (image.getUser().getId() == loggedUser.getId()) {
       //System.out.println("#########image owner edit#######");
       String tags = convertTagsToString(image.getTags());
@@ -112,6 +111,7 @@ public class ImageController {
     } else {
       //System.out.println("#########non owner edit###########");
       model.addAttribute("tags", image.getTags());
+      model.addAttribute("comments",image.getComments());
       model.addAttribute("editError", "Only the owner of the image can edit the image");
       return "images/image";
     }
@@ -158,16 +158,17 @@ public class ImageController {
   //Looks for a controller method with request mapping of type '/images'
   @RequestMapping(value = "/deleteImage", method = RequestMethod.DELETE)
   public String deleteImageSubmit(@RequestParam(name = "imageId") Integer imageId,
-      @RequestParam(name = "imageUserId") Integer imageUserId, Model model,
+      Model model,
       HttpSession httpSession) {
     User loggedUser = (User) httpSession.getAttribute("loggeduser");
-    if (loggedUser.getId() == imageUserId) {
+    Image image = imageService.getImage(imageId);
+    if (loggedUser.getId() == image.getUser().getId()) {
       imageService.deleteImage(imageId);
       return "redirect:/images";
     } else {
       model.addAttribute("deleteError", "Only the owner of the image can delete the image");
-      Image image = imageService.getImage(imageId);
       model.addAttribute("image", image);
+      model.addAttribute("comments",image.getComments());
       model.addAttribute("tags", image.getTags());
       return "images/image";
     }

@@ -91,8 +91,6 @@ public class ImageControllerTest {
     image.setUser(user);
 
     Mockito.when(imageService.getImage(Mockito.anyInt())).thenReturn(image);
-    Mockito.when(imageService.getImageByIdAndTitle(Mockito.anyInt(), Mockito.anyString()))
-        .thenReturn(image);
     this.mockMvc.perform(get("/images/1/new").session(session))
         .andExpect(view().name("images/image"))
         .andExpect(content().string(containsString("Welcome User. This is the image")));
@@ -267,7 +265,6 @@ public class ImageControllerTest {
 
     this.mockMvc.perform(delete("/deleteImage")
         .param("imageId", "1")
-        .param("imageUserId", "1")
         .session(session))
         .andExpect(redirectedUrl("/images"));
   }
@@ -311,11 +308,8 @@ public class ImageControllerTest {
 
     this.mockMvc.perform(delete("/deleteImage")
         .param("imageId", "1")
-        .param("imageUserId", "1")
         .session(session))
         .andExpect(
             model().attribute("deleteError", "Only the owner of the image can delete the image"));
   }
 }
-
-

@@ -95,6 +95,7 @@ public class UserController {
    * @return boolean if all patterns are matched returns true
    */
   private boolean checkValidPassword(String password) {
+    password = password.trim();
     String letterPattern = ".*[a-zA-Z]+.*";
     String digitPattern = ".*[0-9]+.*";
     String otherCharPattern = ".*[^a-zA-Z0-9].*";
