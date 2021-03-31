@@ -15,6 +15,7 @@ import ImageHoster.model.User;
 import ImageHoster.model.UserProfile;
 import ImageHoster.service.ImageService;
 import ImageHoster.service.TagService;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
