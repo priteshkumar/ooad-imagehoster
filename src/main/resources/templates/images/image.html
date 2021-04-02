@@ -5,28 +5,26 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/tachyons.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/imagehoster.css}"/>
 </head>
 
 <!-- Using the logged-in fragment -->
-<nav class="dt w-100 border-box pa3">
     <header th:replace="layout :: logged-in"></header>
 
     <!-- You need to print the error message if the non owner of the image is trying to edit or delete the image-->
-    <div class="dtc v-mid w-75 tr">
-        <a th:href="@{/editImage(imageId=${image.id})}">Edit</a>
+    <div class="imgopts">
+        <a style="margin-right:5px;color:black;background:lightblue;border:1px solid black;padding-left:12px;padding-right:12px;padding-bottom:2px" th:href="@{/editImage(imageId=${image.id})}">Edit</a>
         <!-- Show the edit error if the non owner of the image is trying to edit the image-->
         <!--Uncomment the below code to show the error if the non owner of the image is trying to edit the image-->
-        <div th:if="${editError}">Only the owner of the image can edit the image</div>
-        <div><br></div>
+        <div style="margin-left:5px;margin-right:10px" th:if="${editError}">Only the owner of the image can edit the image</div>
         <form th:action="@{/deleteImage(imageId=${image.id})}"
               th:method="delete">
-            <input type="submit" value="Delete"/>
+            <input style="background:lightblue;font-size:0.9em" type="submit" value="Delete"/>
         </form>
         <!-- Show the delete error if the non owner of the image is trying to delete the image-->
         <!--Uncomment the below code to show the error if the non owner of the image is trying to delete the image-->
-        <div th:if="${deleteError}">Only the owner of the image can delete the image</div>
+        <div style="margin-left:5px" th:if="${deleteError}">Only the owner of the image can delete the image</div>
     </div>
-</nav>
 
 <!-- Display all the details of a particular image-->
 <body>
@@ -34,12 +32,12 @@
     &nbsp;
 </div>
 <article class="fl w-50-l w-100 pa3 pa5-ns center">
-    <h1>Welcome User. This is the image</h1>
+    <h2 style="color:grey">Cool Snap!!</h2>
     <main id="image">
-        <h2 th:text="${image.title}">Title of image</h2>
-        <div><span th:text="${image.description}"></span></div>
+        <h2 style="color:grey" th:text="${image.title}">Title of image</h2>
+        <div><span style="color:grey" th:text="${image.description}"></span></div>
         <br>
-        <div><i>Posted On: </i> <span th:text="${image.date}"></span></div>
+        <div><i style="color:grey">Posted On: </i> <span style="color:grey" th:text="${image.date}"></span></div>
 
         <div>
             <img th:src="'data:image/jpeg;base64,'+${image.imageFile}"/>
@@ -64,7 +62,7 @@
                 </div>
             </fieldset>
             <div>
-                <input class="b ph3 pv2 input-reset ba b&#45;&#45;black bg-transparent grow pointer f6 dib" type="submit"
+                <input style="background:lightblue" class="b ph3 pv2 input-reset ba b&#45;&#45;black  grow pointer f6 dib" type="submit"
                        value="Submit">
             </div>
         </form>

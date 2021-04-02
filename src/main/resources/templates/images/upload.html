@@ -4,33 +4,37 @@
 
 <head th:replace="layout :: site-head">
 </head>
-
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/imagehoster.css}"/>
+</head>
 <!-- Using the logged-in fragment -->
 <header th:replace="layout :: logged-in"></header>
 
 <body>
-<h1>Upload New Image</h1>
+<div id="upload-div">
+<h3 id="upload-header">Upload New Image</h3>
 
-<form method="post" th:action="@{/images/upload}" enctype="multipart/form-data">
-    <div>Image Title:</div>
+<form id="upload-form" method="post" th:action="@{/images/upload}" enctype="multipart/form-data">
+    <div style="color:grey">Image Title</div>
     <div><input type="text" id="title" name="title"/></div>
 
     <br>
-    <div>Description:</div>
+    <div style="color:grey">Description</div>
 
     <div><textarea rows="7" cols="100" name="description"></textarea></div>
     <br>
     <div>
-        <label for="file">Upload File</label>
+        <label style="color:grey" for="file">Upload File</label>
         <input type="file" name="file" id="file"/>
     </div>
 
     <!-- This piece of code accepts the string of all the tags separated by a comma-->
     <br>
     <div>
-        <label for="tags">Tags</label>
+        <label style="color:grey" for="tags">Tags</label>
         <input type="text" name="tags" id="tags"/>
-        <p> Multiple tags are allowed. Please separate tags by "," such as labrador,dog,yellow </p>
+        <p style="color:grey"> Multiple tags are allowed. Please separate tags by "," such as nature,mountain </p>
     </div>
 
     <br>
@@ -38,6 +42,6 @@
         <input type="submit" value="Submit"/>
     </div>
 </form>
-
+</div>
 </body>
 </html>

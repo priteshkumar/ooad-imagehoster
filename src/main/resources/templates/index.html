@@ -7,49 +7,32 @@
 </head>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <style>
-    body{
-        background-color:#F0F8FF;
-    }
-       h1 {
-        text-align: center;
-        color: #00BFFF;
-        line-height: 100px;
-        margin: 0;
-      }
-
-      #gallery {
-        width:90%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap:wrap;
-        margin:0 auto;
-      }
-
-      .image {
-        flex:30%;
-        max-width:30%;
-        padding: 5px;
-        margin: 5px;
-      }
-
-      img{
-        width:100%;
-        height:290px;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/imagehoster.css}"/>
 </head>
 <!-- Adding the fragment logged-out in layout.html-->
 <header th:replace="layout :: logged-out"></header>
 
 <body>
-<h1>Image Hoster</h1>
-<div id="gallery">
-    <div class="image" th:each="i : ${images}">
-            <img th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>
-        <h2 th:text="${i.title}"></h2>
-        <i>Posted On: </i> <span th:text="${i.date}"></span>
+<div id="container">
+      <div class="imggrid">
+          <div class="homeimg" th:each="i : ${images}">
+                  <img style="width:100%" th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>
+              </div>
+          </div>
+    <div class="homelogin">
+        <h3 style="color:grey;text-align:center">Please Login</h3>
+        <form class="login-form" th:action="@{/users/login}" th:method="POST" th:object="${User}">
+            <label for="username">Username</label><br/>
+            <input type="text" id="username" name="username"/><br/><br/>
+            <label for="password">Password</label><br/>
+            <input type="password" id="password" name="password"/><br/><br/>
+            <input type="submit" value="Login"/>
+        </form>
     </div>
 </div>
+<hr/>
+<footer style="width:100%;text-align:center" id="site-footer">
+    Copyright @Pritesh
+</footer>
 </body>
 </html>

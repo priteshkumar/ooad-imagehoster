@@ -10,24 +10,31 @@
 <!-- The logged-out fragment now contains Login as well as Registration-->
 <header th:fragment="logged-out" th:remove="tag">
     <header>
+        <h2 class="apptitle">ImageHoster</h2>
+        <div id="useropts">
         <a href="users/login.html" th:href="@{/users/login}">Login</a>
-        <a href="users/registration.html" th:href="@{/users/registration}">Registration</a>
+            <a href="users/registration.html" th:href="@{/users/registration}">SignUp</a></div>
     </header>
 </header>
 
 <!-- Define a logged-in fragment-->
 <header th:fragment="logged-in" th:remove="tag">
     <header>
-        <b>Logged in as:</b>
-        <label th:text="${session.loggeduser.profile.fullName}"></label> |
-        <a href="images/upload.html" th:href="@{/images/upload}">Upload Image</a>
-        <form method="post" th:action="@{/users/logout}">
+        <h2 class="apptitle">ImageHoster</h2>
+        <div id="image-upload">
+            <a style="color:white" href="images/upload.html" th:href="@{/images/upload}">Upload Image</a>
+        </div>
+        <div id="userinfo">
+        <b style="color:white;">Logged in:</b>
+        <label style="margin-right:5px;color:white" th:text="${session.loggeduser.profile.fullName}"></label>
+        <form style="margin-right:15px" method="post" th:action="@{/users/logout}">
             <input type="submit" value="Logout"/>
         </form>
 
         <a th:href="@{/images}">
-            <h3>Image Hoster</h3>
+            <h5 style="color:white">Image Hoster</h5>
         </a>
+        </div>
     </header>
 </header>
 

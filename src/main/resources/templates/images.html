@@ -4,28 +4,24 @@
 
 <head th:replace="layout :: site-head">
 </head>
-
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/imagehoster.css}"/>
+</head>
 <!-- Using the logged-in fragment -->
 <header th:replace="layout :: logged-in"></header>
 <!-- Display all the images in user home page after successful log in-->
 <body>
-<h1>Welcome User. These are the images</h1>
-<main id="images">
-    <post th:each="i : ${images}">
-        <p>
-        <div>
+<h2 class="imagetag">ImageGallery</h2>
+<div id="gallery">
+    <div class="image" th:each="i : ${images}">
             <img th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>
-        </div>
 
         <a th:href="'/images/'  + ${i.id} + '/' + ${i.title}">
             <h3 th:text="${i.title}">Title of image</h3>
         </a>
         <i>Posted On: </i> <span th:text="${i.date}"></span>
-        <br>
-        <br>
-        <hr>
-        </p>
-    </post>
-</main>
+        </div>
+</div>
 </body>
 </html>
