@@ -11,7 +11,7 @@
 </head>
 <!-- Adding the fragment logged-out in layout.html-->
 <header th:replace="layout :: logged-out"></header>
-
+<body>
 <div id="signup-div">
 <h3 id="signup-header">Please Register</h3>
 
@@ -40,4 +40,5 @@
     <div th:if="${passwordTypeError}">Password must contain atleast 1 alphabet, 1 number & 1 special character</div>
 </form>
 </div>
+</body>
 </html>

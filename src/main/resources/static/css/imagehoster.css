@@ -12,22 +12,43 @@
 
        #container {
               display:flex;
-              width:80%;
+              width:100%;
               margin:0 auto;
               flex-wrap: wrap;
-              margin-top:40px;
+              margin-top:50px;
               align-items:center;
               justify-content:space-around;
-              height:84vh;
-              margin-right:15%;
-            }
+              min-height:100vh;
+       }
+
+        #simple-container{
+          position:relative;
+          width:100%;
+          min-height:100vh;
+          padding-bottom:50px;
+        }
 
         .imggrid {
-             width:50%;
+             width:40%;
              display: flex;
              flex-direction: row;
              flex-wrap:wrap;
              margin:0 auto;
+             align-self:start;
+             margin-left:15%;
+        }
+
+        .homemsg{
+          flex:40%;
+          display:flex;
+          flex-direction:column;
+          max-width: 40%;
+          margin:0;
+          height:200px;
+          background:white;
+          justify-content:center;
+          align-items:center;
+          border-radius:10px 0 0 0;
         }
 
         .homeimg{
@@ -59,10 +80,11 @@
                       }
 
         .homelogin{
-          width:30%;
+          width:25%;
           border:1px solid silver;
           padding-bottom:20px;
           align-self:start;
+          margin-right:15%;
         }
 
         .column {
@@ -92,7 +114,9 @@
 
       .apptitle {
        color:white;
+       padding:5px;
        margin-top:20px;
+       margin-left:15px;
       }
 
       #useropts{

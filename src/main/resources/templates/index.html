@@ -15,6 +15,10 @@
 <body>
 <div id="container">
       <div class="imggrid">
+          <div class="homemsg">
+              <h3 style="color:blue;"><i>Enjoy coolest Photos!</i></h3>
+                <h4 style="color:blue;margin-top:0;padding-top:0">Discover the world :)</h4>
+          </div>
           <div class="homeimg" th:each="i : ${images}">
                   <img style="width:100%" th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>
               </div>
@@ -29,10 +33,12 @@
             <input type="submit" value="Login"/>
         </form>
     </div>
+    <footer style="width:100%;text-align:right;color:grey;font-size:0.8em;align-self:end;margin-top:200px" id="site-footer">
+        <hr/>
+        <span style="margin-right:15px">Copyright @Pritesh</span>
+    </footer>
 </div>
-<hr/>
-<footer style="width:100%;text-align:center" id="site-footer">
-    Copyright @Pritesh
-</footer>
+
+
 </body>
 </html>
