@@ -18,9 +18,8 @@
             <img th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>
 
         <a th:href="'/images/'  + ${i.id} + '/' + ${i.title}">
-            <h3 th:text="${i.title}">Title of image</h3>
+            <h4 th:text="${i.title}">Title of image</h4>
         </a>
-        <i>Posted On: </i> <span th:text="${i.date}"></span>
         </div>
 </div>
 </body>

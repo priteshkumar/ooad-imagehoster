@@ -2,40 +2,45 @@
 
 <head th:replace="layout :: site-head">
 </head>
-
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/imagehoster.css}"/>
+</head>
 <header th:replace="layout :: logged-in"></header>
+<body>
+<div id="upload-div">
+    <h3 id="upload-header">Edit Image</h3>
 
-<h1>Edit Image</h1>
+<form id="upload-form" th:method="put" th:action="@{/editImage(imageId=${image.id})}" enctype="multipart/form-data">
 
-<form th:method="put" th:action="@{/editImage(imageId=${image.id})}" enctype="multipart/form-data">
-
-    <div>Image Title :</div>
+    <div style="color:grey">Image Title</div>
     <div>
         <input type="text" name="title" size="70" th:value="${image.title}"/>
     </div>
 
     <br>
-    <div> Description :</div>
+    <div style="color:grey"> Description</div>
     <div>
         <textarea rows="7" cols="100" name="description" th:text="${image.description}"></textarea>
     </div>
 
     <br>
     <div>
-        <label for="file">Edit File</label>
+        <label style="color:grey" for="file">Edit File</label>
         <input type="file" name="file" id="file"/>
     </div>
 
     <!-- The code provides an option to edit the tags of an image and also displays the previous assigned tags to an image-->
     <br>
     <div>
-        <label for="tags">Edit Tags</label>
+        <label style="color:grey" for="tags">Edit Tags</label>
         <textarea type="text" name="tags" id="tags" th:text="${tags}"></textarea>
-        <p>Multiple tags are allowed. Please separate tags by "," such as labrador,dog,yellow </p>
+        <p style="color:grey">Multiple tags are allowed. Please separate tags by "," such as mountain,nature </p>
     </div>
 
     <br>
     <input type="submit" value="Submit"/>
 </form>
-
+</div>
+</body>
 </html>

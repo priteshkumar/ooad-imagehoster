@@ -10,7 +10,9 @@
 <!-- The logged-out fragment now contains Login as well as Registration-->
 <header th:fragment="logged-out" th:remove="tag">
     <header>
-        <h2 class="apptitle">ImageHoster</h2>
+        <div id="applogo-div"><h2 class="apptitle">ImageHoster</h2>
+            <span style="font-size:1em;color:white;margin-bottom:15px">Enjoy cool snaps!</span>
+        </div>
         <div id="useropts">
         <a href="users/login.html" th:href="@{/users/login}">Login</a>
             <a href="users/registration.html" th:href="@{/users/registration}">SignUp</a></div>
@@ -20,7 +22,9 @@
 <!-- Define a logged-in fragment-->
 <header th:fragment="logged-in" th:remove="tag">
     <header>
-        <h2 class="apptitle">ImageHoster</h2>
+        <div id="applogo-div"><h2 class="apptitle">ImageHoster</h2>
+        <span style="font-size:1em;color:white;">Enjoy cool snaps!</span>
+        </div>
         <div id="image-upload">
             <a style="color:white" href="images/upload.html" th:href="@{/images/upload}">Upload Image</a>
         </div>
