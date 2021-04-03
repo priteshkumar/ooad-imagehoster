@@ -137,7 +137,18 @@
         flex-direction: row;
         flex-wrap:wrap;
         margin:0 auto;
-        margin-top:40px;
+        margin-top:30px;
+      }
+
+      #imgtag{
+        max-width:60px;
+        height:25px;
+        padding:0 10px;
+        background:white;
+        border:1px solid lightblue;
+        margin-top:30px;
+        text-align:center;
+        margin-left:6%;
       }
 
       .image {

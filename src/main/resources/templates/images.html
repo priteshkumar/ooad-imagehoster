@@ -19,6 +19,7 @@
     <input type="submit" value="Search"/>
 </form>
 </div>
+<div id="imgtag" th:if="${imgtag}" th:text="${imgtag}">Image tag</div>
 <div id="gallery">
     <div class="image" th:each="i : ${images}">
             <img th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>
