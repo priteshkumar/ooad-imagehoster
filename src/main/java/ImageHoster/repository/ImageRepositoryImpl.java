@@ -25,7 +25,7 @@ public class ImageRepositoryImpl implements ImageRepository {
   //The transaction is committed if it is successful
   //The transaction is rolled back in case of unsuccessful transaction
   @Override
-public Image uploadImage(Image newImage) {
+  public Image uploadImage(Image newImage) {
 
     EntityManager em = emf.createEntityManager();
     EntityTransaction transaction = em.getTransaction();
@@ -44,7 +44,7 @@ public Image uploadImage(Image newImage) {
   //Executes JPQL query to fetch all the images from the database
   //Returns the list of all the images fetched from the database
   @Override
-public List<Image> getAllImages() {
+  public List<Image> getAllImages() {
     EntityManager em = emf.createEntityManager();
     TypedQuery<Image> query = em.createQuery("SELECT i from Image i", Image.class);
     List<Image> resultList = query.getResultList();
@@ -57,7 +57,7 @@ public List<Image> getAllImages() {
   //Returns the image in case the image is found in the database
   //Returns null if no image is found in the database
   @Override
-public Image getImageByIdAndTitle(Integer id, String title) {
+  public Image getImageByIdAndTitle(Integer id, String title) {
     EntityManager em = emf.createEntityManager();
     try {
       TypedQuery<Image> typedQuery = em.createQuery("SELECT i from Image i where i.id = :id"
@@ -74,7 +74,7 @@ public Image getImageByIdAndTitle(Integer id, String title) {
   //Executes JPQL query to fetch the image from the database with corresponding id
   //Returns the image fetched from the database
   @Override
-public Image getImage(Integer imageId) {
+  public Image getImage(Integer imageId) {
     EntityManager em = emf.createEntityManager();
     TypedQuery<Image> typedQuery = em
         .createQuery("SELECT i from Image i where i.id =:imageId", Image.class)
@@ -89,7 +89,7 @@ public Image getImage(Integer imageId) {
   //The transaction is committed if it is successful
   //The transaction is rolled back in case of unsuccessful transaction
   @Override
-public void updateImage(Image updatedImage) {
+  public void updateImage(Image updatedImage) {
     EntityManager em = emf.createEntityManager();
     EntityTransaction transaction = em.getTransaction();
 
@@ -111,7 +111,7 @@ public void updateImage(Image updatedImage) {
   //The transaction is committed if it is successful
   //The transaction is rolled back in case of unsuccessful transaction
   @Override
-public void deleteImage(Integer imageId) {
+  public void deleteImage(Integer imageId) {
     EntityManager em = emf.createEntityManager();
     EntityTransaction transaction = em.getTransaction();
 

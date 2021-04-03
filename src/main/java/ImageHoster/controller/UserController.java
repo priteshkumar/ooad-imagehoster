@@ -84,7 +84,7 @@ public class UserController {
   public String logout(Model model, HttpSession session) {
     session.invalidate();
 
-    List<Image> images = imageService.getAllImages();
+    List<Image> images = imageService.getAllImages().subList(1,5);
     model.addAttribute("images", images);
     return "index";
   }

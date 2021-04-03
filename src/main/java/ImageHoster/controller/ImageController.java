@@ -25,6 +25,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class ImageController {
 
+  static final int MAX_FILE_SIZE = 1048576;
+
   @Autowired
   private ImageService imageService;
 
@@ -55,9 +57,18 @@ public class ImageController {
     Image image = imageService.getImage(id);
     model.addAttribute("image", image);
     model.addAttribute("tags", image.getTags());
-    model.addAttribute("comments",image.getComments());
+    model.addAttribute("comments", image.getComments());
     return "images/image";
   }
+
+  @RequestMapping("/images/tags")
+  public String findImageByTags(@RequestParam("imgtags") String tags, Model model) {
+    List<Image> images = tagService.findImageByTags(tags);
+    model.addAttribute("images", images);
+    model.addAttribute("imgtag", tags);
+    return "images";
+  }
+
 
   //This controller method is called when the request pattern is of type 'images/upload'
   //The method returns 'images/upload.html' file
@@ -81,6 +92,16 @@ public class ImageController {
       @RequestParam("tags") String tags, Image newImage, HttpSession session) throws IOException {
 
     User user = (User) session.getAttribute("loggeduser");
+    System.out.println(file.getSize() + " " + file.getContentType());
+
+    String contentType = file.getContentType().toLowerCase();
+    if (file.isEmpty() || file.getSize() > MAX_FILE_SIZE || (!contentType.endsWith("jpg")
+        && !contentType
+        .endsWith("jpeg")
+        && !contentType.endsWith("png"))) {
+      System.out.println("...wrong image upload...");
+      return "redirect:/images";
+    }
     newImage.setUser(user);
     String uploadedImageData = convertUploadedFileToBase64(file);
     newImage.setImageFile(uploadedImageData);
@@ -112,7 +133,7 @@ public class ImageController {
     } else {
       //System.out.println("#########non owner edit###########");
       model.addAttribute("tags", image.getTags());
-      model.addAttribute("comments",image.getComments());
+      model.addAttribute("comments", image.getComments());
       model.addAttribute("editError", "Only the owner of the image can edit the image");
       return "images/image";
     }
@@ -169,7 +190,7 @@ public class ImageController {
     } else {
       model.addAttribute("deleteError", "Only the owner of the image can delete the image");
       model.addAttribute("image", image);
-      model.addAttribute("comments",image.getComments());
+      model.addAttribute("comments", image.getComments());
       model.addAttribute("tags", image.getTags());
       return "images/image";
     }

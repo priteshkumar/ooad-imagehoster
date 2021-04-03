@@ -1,6 +1,9 @@
 package ImageHoster.repository;
 
+import ImageHoster.model.Image;
 import ImageHoster.model.Tag;
+import apple.laf.JRSUIUtils.Images;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -16,7 +19,7 @@ public class TagRepositoryImpl implements TagRepository {
   private EntityManagerFactory emf;
 
   @Override
-public Tag createTag(Tag tag) {
+  public Tag createTag(Tag tag) {
     EntityManager em = emf.createEntityManager();
     EntityTransaction transaction = em.getTransaction();
 
@@ -31,13 +34,26 @@ public Tag createTag(Tag tag) {
   }
 
   @Override
-public Tag findTag(String tagName) {
+  public Tag findTag(String tagName) {
     EntityManager em = emf.createEntityManager();
     try {
       TypedQuery<Tag> typedQuery = em
           .createQuery("SELECT t from Tag t where t.name =:tagName", Tag.class)
           .setParameter("tagName", tagName);
       return typedQuery.getSingleResult();
+    } catch (NoResultException nre) {
+      return null;
+    }
+  }
+
+  @Override
+  public List<Image> findImageByTag(String tag) {
+    EntityManager em = emf.createEntityManager();
+    try {
+      TypedQuery<Tag> typedQuery = em
+          .createQuery("SELECT t from Tag t where t.name =:tagName", Tag.class)
+          .setParameter("tagName", tag);
+      return typedQuery.getSingleResult().getImages();
     } catch (NoResultException nre) {
       return null;
     }

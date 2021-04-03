@@ -12,7 +12,13 @@
 <header th:replace="layout :: logged-in"></header>
 <!-- Display all the images in user home page after successful log in-->
 <body>
-<h2 class="imagetag">ImageGallery</h2>
+<div id="topsection">
+<h3 style="text-align:center;color:grey" id="imagetag">ImageGallery</h3>
+<form id="search-form" th:action="@{/images/tags}" th:method="POST" th:object="${User}">
+    <input type="text" id="imgtags" name="imgtags" placeholder="Enter image tag..."/>
+    <input type="submit" value="Search"/>
+</form>
+</div>
 <div id="gallery">
     <div class="image" th:each="i : ${images}">
             <img th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>

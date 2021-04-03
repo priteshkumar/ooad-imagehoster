@@ -307,3 +307,28 @@
                                       text-align:center;
                                       background-color:lightblue;
                                     }
+
+            #topsection{
+               width:40%;
+               margin:0 auto;
+               margin-top:20px;
+               padding:5px;
+            }
+
+            #search-form{
+               width:90%;
+               margin:0 auto;
+            }
+
+            #search-form > input[type="text"]{
+              width:70%;
+              height:2.2em;
+            }
+
+             #search-form > input[type="submit"] {
+                                                  width:10%;
+                                                  padding:7px 5px;
+                                                  margin-left:5px;
+                                                  text-align:center;
+                                                  background-color:lightblue;
+                                                }
