@@ -5,29 +5,46 @@
 <head th:replace="layout :: site-head">
 </head>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/imagehoster.css}"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/imagehoster.css}"/>
 </head>
 <!-- Using the logged-in fragment -->
 <header th:replace="layout :: logged-in"></header>
 <!-- Display all the images in user home page after successful log in-->
 <body>
 <div id="topsection">
-<h3 style="text-align:center;color:grey" id="imagetag">ImageGallery</h3>
-<form id="search-form" th:action="@{/images/tags}" th:method="POST" th:object="${User}">
+  <h2 style="text-align:center;color:grey" id="imagetag">ImageGallery</h2>
+  <form id="search-form" th:action="@{/images/tags}" th:method="POST" th:object="${User}">
     <input type="text" id="imgtags" name="imgtags" placeholder="Enter image tag..."/>
     <input type="submit" value="Search"/>
-</form>
+  </form>
 </div>
 <div id="imgtag" th:if="${imgtag}" th:text="${imgtag}">Image tag</div>
-<div id="gallery">
+<div id="maincontainer"
+     style="display:flex;width:100%;flex-wrap:wrap;justify-content:space-between">
+  <div th:if="${alltags}" style="width:10%;margin-right:15px;margin-left:0px;margin-top:12px;">
+    <ul style="list-style:none;">
+      <li style="background:white;color:blue;font-size:1em;border-bottom:1px dotted silver">
+        Classfiers
+      </li>
+      <li style="background:white;color:grey;font-size:1em;border-bottom:1px dotted silver">My
+        Images
+      </li>
+      <li style="background:white;color:grey;font-size:1em;border-bottom:1px dotted silver"
+          th:each="tag : ${alltags}" th:text="${tag.name}">
+        Tag
+      </li>
+    </ul>
+  </div>
+  <div id="gallery">
     <div class="image" th:each="i : ${images}">
-            <img th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>
+      <img th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>
 
-        <a th:href="'/images/'  + ${i.id} + '/' + ${i.title}">
-            <h4 th:text="${i.title}">Title of image</h4>
-        </a>
-        </div>
+      <a th:href="'/images/'  + ${i.id} + '/' + ${i.title}">
+        <h4 th:text="${i.title}">Title of image</h4>
+      </a>
+    </div>
+  </div>
 </div>
 </body>
 </html>

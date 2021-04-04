@@ -37,7 +37,9 @@ public class ImageController {
   @RequestMapping("images")
   public String getUserImages(Model model) {
     List<Image> images = imageService.getAllImages();
+    List<Tag> tags = tagService.getAllTags();
     model.addAttribute("images", images);
+    model.addAttribute("alltags",tags);
     return "images";
   }
 
@@ -62,10 +64,12 @@ public class ImageController {
   }
 
   @RequestMapping("/images/tags")
-  public String findImageByTags(@RequestParam("imgtags") String tags, Model model) {
-    List<Image> images = tagService.findImageByTags(tags);
+  public String findImageByTags(@RequestParam("imgtags") String tag, Model model) {
+    List<Image> images = tagService.findImageByTags(tag);
+    List<Tag> tagList = tagService.getAllTags();
     model.addAttribute("images", images);
-    model.addAttribute("imgtag", tags);
+    model.addAttribute("alltags",tagList);
+    model.addAttribute("imgtag", tag);
     return "images";
   }
 

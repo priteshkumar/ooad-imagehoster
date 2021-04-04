@@ -11,4 +11,6 @@ public interface TagService {
   Tag createTag(Tag tag);
 
   List<Image> findImageByTags(String tags);
+
+  List<Tag> getAllTags();
 }

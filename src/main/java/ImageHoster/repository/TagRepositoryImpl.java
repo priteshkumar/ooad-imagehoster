@@ -58,4 +58,16 @@ public class TagRepositoryImpl implements TagRepository {
       return null;
     }
   }
+
+  @Override
+  public List<Tag> getAllTags() {
+    EntityManager em = emf.createEntityManager();
+    try {
+      TypedQuery<Tag> typedQuery = em
+          .createQuery("SELECT t from Tag t", Tag.class);
+      return typedQuery.getResultList();
+    } catch (NoResultException nre) {
+      return null;
+    }
+  }
 }

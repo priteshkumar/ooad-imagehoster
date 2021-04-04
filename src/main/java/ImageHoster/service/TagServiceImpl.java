@@ -29,4 +29,9 @@ public class TagServiceImpl implements TagService {
   public List<Image> findImageByTags(String tags) {
     return tagRepository.findImageByTag(tags);
   }
+
+  @Override
+  public List<Tag> getAllTags() {
+    return tagRepository.getAllTags();
+  }
 }

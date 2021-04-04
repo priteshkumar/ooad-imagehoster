@@ -12,4 +12,6 @@ public interface TagRepository {
 
 	List<Image> findImageByTag(String tag);
 
+	List<Tag> getAllTags();
+
 }
