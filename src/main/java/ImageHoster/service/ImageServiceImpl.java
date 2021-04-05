@@ -51,4 +51,9 @@ public class ImageServiceImpl implements ImageService {
     imageRepository.deleteImage(imageId);
   }
 
+  @Override
+  public List<Image> getUserImages(Integer userId) {
+    return imageRepository.getUserImages(userId);
+  }
+
 }

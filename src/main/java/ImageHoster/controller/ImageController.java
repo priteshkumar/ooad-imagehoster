@@ -63,6 +63,15 @@ public class ImageController {
     return "images/image";
   }
 
+  @RequestMapping("/images/user/{userId}")
+  public String getUserImages(@PathVariable("userId") Integer userId, Model model) {
+    List<Image> images = imageService.getUserImages(userId);
+    List<Tag> tagList = tagService.getAllTags();
+    model.addAttribute("images", images);
+    model.addAttribute("alltags",tagList);
+    return "images";
+  }
+
   @RequestMapping("/images/tags")
   public String findImageByTags(@RequestParam("imgtags") String tag, Model model) {
     List<Image> images = tagService.findImageByTags(tag);

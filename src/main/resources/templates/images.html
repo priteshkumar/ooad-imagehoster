@@ -27,7 +27,7 @@
         Classfiers
       </li>
       <li style="background:white;color:grey;font-size:1em;border-bottom:1px dotted silver">
-        <a th:href="'/user/images/' + ${session.loggeduser.id}">My Images</a>
+        <a th:href="'/images/user/' + ${session.loggeduser.id}">My Images</a>
       </li>
       <li style="background:white;color:grey;font-size:1em;border-bottom:1px dotted silver"
           th:each="tag : ${alltags}">

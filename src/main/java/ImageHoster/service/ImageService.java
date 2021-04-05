@@ -24,4 +24,5 @@ public interface ImageService {
 	//The method calls the deleteImage() method in the Repository and passes the Image id of the image to be deleted in the database
 	void deleteImage(Integer imageId);
 
+  List<Image> getUserImages(Integer userId);
 }

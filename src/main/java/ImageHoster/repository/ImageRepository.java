@@ -46,4 +46,5 @@ public interface ImageRepository {
 	//The transaction is rolled back in case of unsuccessful transaction
 	void deleteImage(Integer imageId);
 
+  List<Image> getUserImages(Integer userId);
 }
