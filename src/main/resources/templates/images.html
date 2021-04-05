@@ -19,7 +19,6 @@
     <input type="submit" value="Search"/>
   </form>
 </div>
-<div id="imgtag" th:if="${imgtag}" th:text="${imgtag}">Image tag</div>
 <div id="maincontainer"
      style="display:flex;width:100%;flex-wrap:wrap;justify-content:space-between">
   <div th:if="${alltags}" style="width:10%;margin-right:15px;margin-left:0px;margin-top:12px;">
@@ -27,22 +26,25 @@
       <li style="background:white;color:blue;font-size:1em;border-bottom:1px dotted silver">
         Classfiers
       </li>
-      <li style="background:white;color:grey;font-size:1em;border-bottom:1px dotted silver">My
-        Images
+      <li style="background:white;color:grey;font-size:1em;border-bottom:1px dotted silver">
+        <a th:href="'/user/images/' + ${session.loggeduser.id}">My Images</a>
       </li>
       <li style="background:white;color:grey;font-size:1em;border-bottom:1px dotted silver"
-          th:each="tag : ${alltags}" th:text="${tag.name}">
-        Tag
+          th:each="tag : ${alltags}">
+        <a th:href="'/images/tags?' + 'imgtags=' + ${tag.name}" th:text="${tag.name}">Tag</a>
       </li>
     </ul>
   </div>
-  <div id="gallery">
-    <div class="image" th:each="i : ${images}">
-      <img th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>
+  <div id="gallery-div">
+    <div id="imgtag" th:if="${imgtag}" th:text="${imgtag}">Image tag</div>
+    <div id="gallery">
+      <div class="image" th:each="i : ${images}">
+        <img th:src="'data:image/jpeg;base64,'+${i.imageFile}"/>
 
-      <a th:href="'/images/'  + ${i.id} + '/' + ${i.title}">
-        <h4 th:text="${i.title}">Title of image</h4>
-      </a>
+        <a th:href="'/images/'  + ${i.id} + '/' + ${i.title}">
+          <h4 th:text="${i.title}">Title of image</h4>
+        </a>
+      </div>
     </div>
   </div>
 </div>
