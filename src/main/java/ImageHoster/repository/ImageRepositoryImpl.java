@@ -125,4 +125,17 @@ public class ImageRepositoryImpl implements ImageRepository {
     }
   }
 
+  @Override
+  public List<Image> getUserImages(Integer userId) {
+    EntityManager em = emf.createEntityManager();
+    try {
+      TypedQuery<Image> typedQuery = em
+          .createQuery("SELECT i from Image i where i.user.id = :userId", Image.class);
+      typedQuery.setParameter("userId", userId);
+      return typedQuery.getResultList();
+    } catch (NoResultException nre) {
+      return null;
+    }
+  }
+
 }
