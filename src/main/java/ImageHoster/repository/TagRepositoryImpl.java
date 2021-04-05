@@ -2,7 +2,6 @@ package ImageHoster.repository;
 
 import ImageHoster.model.Image;
 import ImageHoster.model.Tag;
-import apple.laf.JRSUIUtils.Images;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
