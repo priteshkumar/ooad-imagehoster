@@ -1,5 +1,7 @@
 package ImageHoster.config;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
@@ -19,12 +21,16 @@ public class JpaConfig {
   }
 
   @Bean
-  public DataSource dataSource() {
+  public DataSource dataSource() throws URISyntaxException {
     DriverManagerDataSource ds = new DriverManagerDataSource();
     ds.setDriverClassName("org.postgresql.Driver");
-    ds.setUrl("jdbc:postgresql://localhost:5432/imageHoster");
-    ds.setUsername("postgres");
-    ds.setPassword("password");
+    URI dbUri = new URI(
+        "postgres://phwbnhhyoztnfo:aa586c3d9c4856b0b6329c46ad174b6f6b87a9b14c0d8655aae3254ee2af8dd1@ec2-18-206-20-102.compute-1.amazonaws.com:5432/d1u7g6gjl7sj7a");
+    System.out.println("dbhost" + " " +dbUri.getHost());
+    System.out.println(dbUri.getPort() + " " + dbUri.getPath());
+    ds.setUrl("jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath());
+    ds.setUsername("phwbnhhyoztnfo");
+    ds.setPassword("aa586c3d9c4856b0b6329c46ad174b6f6b87a9b14c0d8655aae3254ee2af8dd1");
     return ds;
   }
 }

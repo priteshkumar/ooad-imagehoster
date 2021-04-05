@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TagRepositoryImpl implements TagRepository {
 
-  @PersistenceUnit(unitName = "imageHoster")
+  @PersistenceUnit(unitName = "d1u7g6gjl7sj7a")
   private EntityManagerFactory emf;
 
   @Override

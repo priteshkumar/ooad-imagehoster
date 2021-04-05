@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public class ImageRepositoryImpl implements ImageRepository {
 
   //Get an instance of EntityManagerFactory from persistence unit with name as 'imageHoster'
-  @PersistenceUnit(unitName = "imageHoster")
+  @PersistenceUnit(unitName = "d1u7g6gjl7sj7a")
   private EntityManagerFactory emf;
 
 

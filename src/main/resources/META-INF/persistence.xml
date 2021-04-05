@@ -4,16 +4,16 @@
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-    <persistence-unit name="imageHoster">
+    <persistence-unit name="d1u7g6gjl7sj7a">
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/imageHoster"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-18-206-20-102.compute-1.amazonaws.com:5432/d1u7g6gjl7sj7a"/>
 
-            <property name="javax.persistence.jdbc.user" value="postgres"/>
-            <property name="javax.persistence.jdbc.password" value="password"/>
+            <property name="javax.persistence.jdbc.user" value="phwbnhhyoztnfo"/>
+            <property name="javax.persistence.jdbc.password" value="aa586c3d9c4856b0b6329c46ad174b6f6b87a9b14c0d8655aae3254ee2af8dd1"/>
 
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
             <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
