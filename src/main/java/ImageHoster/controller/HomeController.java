@@ -17,10 +17,6 @@ public class HomeController {
 
   @RequestMapping("/")
   public String getAllImages(Model model) {
-    return "users/login";
-    /*
-    List<Image> images = imageService.getAllImages().subList(1,5);
-    model.addAttribute("images", images);
-    return "index";*/
+    return "index";
   }
 }
