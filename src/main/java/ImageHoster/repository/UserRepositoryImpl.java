@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public class UserRepositoryImpl implements UserRepository {
 
   //Get an instance of EntityManagerFactory from persistence unit with name as 'imageHoster'
-  @PersistenceUnit(unitName = "d1u7g6gjl7sj7a")
+  @PersistenceUnit(unitName = "imageHoster")
   private EntityManagerFactory emf;
 
   //The method receives the User object to be persisted in the database

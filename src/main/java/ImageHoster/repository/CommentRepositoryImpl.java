@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CommentRepositoryImpl implements CommentRepository {
 
-  @PersistenceUnit(unitName = "d1u7g6gjl7sj7a")
+  @PersistenceUnit(unitName = "imageHoster")
   private EntityManagerFactory emf;
 
   @Override
