@@ -2,8 +2,10 @@ package ImageHoster.config;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -13,9 +15,20 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 public class JpaConfig {
 
   @Bean
-  public EntityManagerFactory entityManagerFactory() {
+  public EntityManagerFactory entityManagerFactory() throws URISyntaxException {
     LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
-    emfb.setPersistenceXmlLocation("classpath:META-INF/persistence.xml");
+
+    Properties props = new Properties();
+    emfb.setPersistenceUnitName("imageHoster");
+    emfb.setPersistenceProvider(new HibernatePersistenceProvider());
+    emfb.setPackagesToScan("ImageHoster.model");
+    emfb.setDataSource(dataSource());
+    props.setProperty("hibernate.dialect","org.hibernate.dialect.PostgreSQL82Dialect");
+    props.setProperty("hibernate.temp.use_jdbc_metadata_defaults","false");
+    props.setProperty("hibernate.hbm2ddl.auto","update");
+    props.setProperty("hibernate.format_sql","true");
+    props.setProperty("hibernate.show_sql","false");
+    emfb.setJpaProperties(props);
     emfb.afterPropertiesSet();
     return emfb.getObject();
   }
